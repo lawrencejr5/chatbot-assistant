@@ -9,6 +9,7 @@ const App = () => {
       <Header />
       <ChatIcon />
       <ChatBot />
+      ...
     </main>
   );
 };

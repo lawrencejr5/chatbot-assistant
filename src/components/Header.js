@@ -1,10 +1,10 @@
 import React from "react";
-import { GiArtificialIntelligence } from "react-icons/gi";
+// import { GiArtificialIntelligence } from "react-icons/gi";
 const Header = () => {
   return (
     <nav>
       <div className="logo">
-        <GiArtificialIntelligence />
+        {/* <GiArtificialIntelligence /> */}
         <span>Lawjun</span>
       </div>
     </nav>

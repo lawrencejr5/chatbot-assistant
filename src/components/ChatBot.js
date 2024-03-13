@@ -2,38 +2,47 @@ import React from "react";
 
 import Chat from "./Chat";
 
-import { GiArtificialIntelligence } from "react-icons/gi";
+// import { GiArtificialIntelligence } from "react-icons/gi";
+import { useGlobalContext } from "../context";
 
 const ChatBot = () => {
+  const { value, setValue, chatbotModal, chats, userChat, loading } =
+    useGlobalContext();
+
   return (
-    <aside className="chatbot-container">
+    <aside
+      className={
+        !chatbotModal ? "hidden chatbot-container" : "chatbot-container"
+      }
+    >
       <div className="chatbot">
         <div className="header">
-          <GiArtificialIntelligence className="icon" />
+          {/* <GiArtificialIntelligence className="icon" /> */}
           <span>Lawjun</span>
         </div>
-        <hr />
         <div className="chat-body">
-          <Chat
-            type="bot"
-            msg="Hi, My name na Lawjun and I go be ur career assistant for today"
-          />
-          <Chat type="bot" msg="Wetin u go like make I dey call u?" />
-          <Chat type="user" msg="Call me Lawrence" />
-          <Chat type="bot" msg="Ok, no wahala Lawrence" />
-          <Chat type="bot" msg="So which stage u dey for ur life so?" />
-          <Chat type="user" msg="At this point, I no even know" />
+          {chats.map((chat, index) => {
+            const { type, msg } = chat;
+            return <Chat key={index} type={type} msg={msg} />;
+          })}
+          {loading && <Chat type={"bot"} msg={"Typing..."} />}
         </div>
-        <form id="msgForm">
-          <input
-            type="text"
-            name="msg"
-            id="msg"
-            // ref={msgRef}
-            onClick={(e) => {}}
-          />
-          <button>Send</button>
-        </form>
+        <div className="msg-container">
+          <form id="msgForm" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="text"
+              name="msg"
+              id="msg"
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+            />
+            <button type="button" id="msgBtn" onClick={userChat}>
+              Send
+            </button>
+          </form>
+        </div>
       </div>
     </aside>
   );
