@@ -5,7 +5,7 @@ const Header = () => {
     <nav>
       <div className="logo">
         {/* <GiArtificialIntelligence /> */}
-        <span>Lawjun</span>
+        <span>Lawjun Assistant</span>
       </div>
     </nav>
   );

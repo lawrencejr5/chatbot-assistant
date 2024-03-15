@@ -145,3 +145,13 @@ nav .logo {
   outline: none;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 450px) {
+  .chatbot {
+    height: 100vh;
+    width: 100%;
+  }
+  .chat-body {
+    height: 100vh;
+  }
+}

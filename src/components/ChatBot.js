@@ -18,7 +18,7 @@ const ChatBot = () => {
       <div className="chatbot">
         <div className="header">
           {/* <GiArtificialIntelligence className="icon" /> */}
-          <span>Lawjun</span>
+          <span>Lawjun Assistant</span>
         </div>
         <div className="chat-body">
           {chats.map((chat, index) => {

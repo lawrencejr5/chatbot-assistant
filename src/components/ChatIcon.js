@@ -11,6 +11,7 @@ const ChatIcon = () => {
         setChatbotModal(true);
       }}
     >
+      Chat
       {/* <BsFillChatRightFill className="icon" /> */}
     </button>
   );
