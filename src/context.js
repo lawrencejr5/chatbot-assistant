@@ -21,9 +21,8 @@ const ContextApp = ({ children }) => {
   const [date, setDate] = useState("");
 
   // Functions
-  const userChat = (e) => {
+  const userChat = () => {
     if (value) {
-      e.preventDefault();
       setChat((prev) => {
         let newList = [...prev, { type: "user", msg: value }];
         return newList;

@@ -9,6 +9,11 @@ const ChatBot = () => {
   const { value, setValue, chatbotModal, chats, userChat, loading } =
     useGlobalContext();
 
+  const sendMessage = (e) => {
+    e.preventDefault();
+    userChat();
+  };
+
   return (
     <aside
       className={
@@ -28,7 +33,7 @@ const ChatBot = () => {
           {loading && <Chat type={"bot"} msg={"Typing..."} />}
         </div>
         <div className="msg-container">
-          <form id="msgForm" onSubmit={(e) => e.preventDefault()}>
+          <form id="msgForm" onSubmit={sendMessage}>
             <input
               type="text"
               name="msg"
@@ -38,7 +43,7 @@ const ChatBot = () => {
                 setValue(e.target.value);
               }}
             />
-            <button type="button" id="msgBtn" onClick={userChat}>
+            <button type="button" id="msgBtn">
               Send
             </button>
           </form>
