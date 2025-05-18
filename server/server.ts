@@ -3,25 +3,25 @@ require("dotenv").config();
 import express, { Request, Response } from "express";
 
 import { OpenAI } from "openai";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-const DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions";
-
-import axios from "axios";
 
 const app = express();
 const router = express.Router();
 
 app.use(express.json());
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const { input } = req.body;
 
-    const result = await model.generateContent(input);
-    const response = await result.response.text();
+    const data = await openai.chat.completions.create({
+      model: "o3-mini",
+      messages: [{ role: "user", content: input }],
+    });
+    const response = data.choices[0]?.message?.content;
 
     res.status(200).json({ msg: "success", response });
   } catch (error) {
