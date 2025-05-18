@@ -2,11 +2,7 @@ require("dotenv").config();
 
 import express, { Request, Response } from "express";
 
-import { OpenAI } from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-const DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions";
-
-import axios from "axios";
 
 const app = express();
 const router = express.Router();
