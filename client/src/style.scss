@@ -1,0 +1,111 @@
+@font-face {
+    font-family: my-font;
+    src: url(../public/fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: my-font;
+}
+
+body {
+    background: linear-gradient(135deg, rgb(145, 167, 248), blue);
+    background-attachment: fixed;
+}
+
+main {
+    height: 100vh;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    padding-top: 3rem;
+
+    h1 {
+        text-align: center;
+        color: #fff;
+        font-size: 40px;
+    }
+
+    .chat-section {
+        height: 60vh;
+        width: 100%;
+        width: 70%;
+        margin: 2rem auto 0;
+        // background-color: #ececec;
+
+        .chat {
+            background-color: #fff;
+            display: table;
+            padding: 0.7rem 0.7rem;
+            max-width: 500px;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-bottom-left-radius: 0;
+            color: blue;
+            // font-weight: 600;
+            line-height: 1.5;
+
+            &.ai {
+                background-color: transparent;
+                padding: 0;
+                color: #fff;
+                font-size: 20px;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .form-section {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        position: absolute;
+        bottom: 1rem;
+        form {
+            border: 3px solid #fff;
+            padding: 1rem 1rem 0.5rem;
+            border-radius: 15px;
+            width: 70%;
+            height: 150px;
+            display: grid;
+
+            h2 {
+                color: #fff;
+            }
+
+            .inp-holder {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                width: 100%;
+                input {
+                    width: 100%;
+                    height: 30px;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    padding: 1rem 0;
+                    // border: 1px solid #fff;
+                    margin-bottom: 0.5rem;
+                    color: #fff;
+                    // font-weight: 600;
+                    font-size: 18px;
+
+                    &::placeholder {
+                        color: #ececec;
+                    }
+                }
+                button {
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    font-size: 30px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

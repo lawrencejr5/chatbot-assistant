@@ -2,12 +2,15 @@ require("dotenv").config();
 
 import express, { Request, Response } from "express";
 
+const cors = require("cors");
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const app = express();
 const router = express.Router();
 
 app.use(express.json());
+app.use(cors());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
