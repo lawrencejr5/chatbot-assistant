@@ -1,6 +1,6 @@
 @font-face {
     font-family: my-font;
-    src: url(../public/fonts/Montserrat-VariableFont_wght.ttf);
+    src: url(../public/fonts/Arima-VariableFont_wght.ttf);
 }
 
 * {
@@ -34,6 +34,7 @@ main {
         width: 100%;
         width: 70%;
         margin: 2rem auto 0;
+        overflow: auto;
         // background-color: #ececec;
 
         .chat {

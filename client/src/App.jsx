@@ -4,6 +4,8 @@ import axios from "axios";
 
 import { IoSend } from "react-icons/io5";
 
+import Typewriter from "./components/Typewriter";
+
 const App = () => {
   const [input, setInput] = React.useState("");
 
@@ -19,17 +21,21 @@ const App = () => {
     e.preventDefault();
     try {
       setInput("");
+
+      const newMessage = { role: "user", parts: [{ text: input }] };
+
       setChats((prev) => {
-        return [...prev, { type: "usr", msg: input }];
+        return [...prev, newMessage];
       });
       setLoading(true);
 
       const { data } = await axios.post("http://localhost:5000/api/v1", {
-        input,
+        chatHistory: [...chats, newMessage],
       });
 
+      const modelReply = { role: "model", parts: [{ text: data.response }] };
       setChats((prev) => {
-        return [...prev, { type: "ai", msg: data.response }];
+        return [...prev, modelReply];
       });
 
       setLoading(false);
@@ -44,16 +50,15 @@ const App = () => {
 
       <section className="chat-section">
         {chats.map((chat, i) => {
-          return chat.msg ? (
-            <div className={`chat ${chat.type === "ai" && "ai"}`} key={i}>
-              {chat.msg}
+          return chat.parts[0].text ? (
+            <div className={`chat ${chat.role === "model" && "ai"}`} key={i}>
+              <Typewriter text={chat.parts[0].text} speed={1} />
             </div>
-          ) : loading ? (
-            <div className="chat ai">typing...</div>
           ) : (
             <div></div>
           );
         })}
+        {loading && <div className="chat ai">typing...</div>}
       </section>
 
       <section className="form-section">

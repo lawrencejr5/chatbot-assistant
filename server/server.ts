@@ -17,9 +17,14 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
-    const { input } = req.body;
+    const { chatHistory } = req.body;
 
-    const result = await model.generateContent(input);
+    const result = await model.generateContent({
+      contents: chatHistory,
+      generationConfig: {
+        maxOutputTokens: 200,
+      },
+    });
     const response = await result.response.text();
 
     res.status(200).json({ msg: "success", response });
