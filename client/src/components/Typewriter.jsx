@@ -28,7 +28,9 @@ const Typewriter = ({ text, speed = 100, shouldAnimate = true }) => {
     return () => clearInterval(interval);
   }, [text, speed]);
 
-  return <div dangerouslySetInnerHTML={{ __html: formatText(text) }} />;
+  return (
+    <div dangerouslySetInnerHTML={{ __html: formatText(displayedText) }} />
+  );
 };
 
 export default Typewriter;

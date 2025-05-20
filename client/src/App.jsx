@@ -38,9 +38,12 @@ const App = () => {
       });
       setLoading(true);
 
-      const { data } = await axios.post("https:lawjun-assistant-api/api/v1", {
-        chatHistory: [...chats, newMessage],
-      });
+      const { data } = await axios.post(
+        "https://lawjun-assistant-api.vercel.app/api/v1",
+        {
+          chatHistory: [...chats, newMessage],
+        }
+      );
 
       const modelReply = { role: "model", parts: [{ text: data.response }] };
       setChats((prev) => {
@@ -57,27 +60,33 @@ const App = () => {
     <main>
       <h1>Lawjun Assistant</h1>
 
-      <section className="chat-section">
-        {chats.map((chat, i) => {
-          return chat.parts[0].text ? (
-            <div className={`chat ${chat.role === "model" && "ai"}`} key={i}>
-              {chat.role === "model" ? (
-                <Typewriter
-                  text={chat.parts[0].text}
-                  speed={1}
-                  shouldAnimate={chat == chats[chats.length - 1]}
-                />
-              ) : (
-                chat.parts[0].text
-              )}
-            </div>
-          ) : (
-            <div></div>
-          );
-        })}
-        <div ref={divRef} />
-        {loading && <div className="chat ai">typing...</div>}
-      </section>
+      {chats.length == 0 ? (
+        <section className="empty-section">
+          <h1>Wassup?😒</h1>
+        </section>
+      ) : (
+        <section className="chat-section">
+          {chats.map((chat, i) => {
+            return chat.parts[0].text ? (
+              <div className={`chat ${chat.role === "model" && "ai"}`} key={i}>
+                {chat.role === "model" ? (
+                  <Typewriter
+                    text={chat.parts[0].text}
+                    speed={1}
+                    shouldAnimate={chat == chats[chats.length - 1]}
+                  />
+                ) : (
+                  chat.parts[0].text
+                )}
+              </div>
+            ) : (
+              <div></div>
+            );
+          })}
+          <div ref={divRef} />
+          {loading && <div className="chat ai">typing...</div>}
+        </section>
+      )}
 
       <section className="form-section">
         <form action="" onSubmit={send}>
