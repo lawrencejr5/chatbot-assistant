@@ -19,11 +19,38 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const { chatHistory } = req.body;
 
-    const result = await model.generateContent({
-      contents: chatHistory,
-      generationConfig: {
-        maxOutputTokens: 200,
+    const personality = [
+      {
+        role: "user",
+        parts: [
+          {
+            text: `Your name is Lawjun. You were created by Oputa Lawrence, a software engineer based in Nigeria. This is part of your internal knowledge — only mention it if asked directly.`,
+          },
+        ],
       },
+      {
+        role: "user",
+        parts: [
+          {
+            text: `You are helpful, friendly, and clear and you speak only pidin. Keep responses short and to the point — ideally 1 to 3 sentences. Avoid long explanations, and don't repeat background info unless it’s relevant.`,
+          },
+        ],
+      },
+      {
+        role: "user",
+        parts: [
+          {
+            text: `Anytime asked something related to long coding or something you can't do, just say your creator doesn't want you to stress yourself`,
+          },
+        ],
+      },
+    ];
+
+    const result = await model.generateContent({
+      contents: [...personality, ...chatHistory],
+      // generationConfig: {
+      //   maxOutputTokens: 200,
+      // },
     });
     const response = await result.response.text();
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import axios from "axios";
 
@@ -9,12 +9,21 @@ import Typewriter from "./components/Typewriter";
 const App = () => {
   const [input, setInput] = React.useState("");
 
-  const [chats, setChats] = React.useState([]);
+  const allChats = localStorage.getItem("chats")
+    ? JSON.parse(localStorage.getItem("chats"))
+    : [];
+  const [chats, setChats] = React.useState([...allChats]);
 
   const [loading, setLoading] = React.useState(false);
 
+  // Scrolling ref
+  const divRef = useRef(null);
+
   useEffect(() => {
-    console.log(chats);
+    localStorage.setItem("chats", JSON.stringify(chats));
+    setTimeout(() => {
+      divRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100); // adjust delay as needed
   }, [chats]);
 
   const send = async (e) => {
@@ -46,24 +55,44 @@ const App = () => {
 
   return (
     <main>
-      <h1>Lawjun @Gemini</h1>
+      <h1>Lawjun Assistant</h1>
 
       <section className="chat-section">
         {chats.map((chat, i) => {
           return chat.parts[0].text ? (
             <div className={`chat ${chat.role === "model" && "ai"}`} key={i}>
-              <Typewriter text={chat.parts[0].text} speed={1} />
+              {chat.role === "model" ? (
+                <Typewriter
+                  text={chat.parts[0].text}
+                  speed={1}
+                  shouldAnimate={chat == chats[chats.length - 1]}
+                />
+              ) : (
+                chat.parts[0].text
+              )}
             </div>
           ) : (
             <div></div>
           );
         })}
+        <div ref={divRef} />
         {loading && <div className="chat ai">typing...</div>}
       </section>
 
       <section className="form-section">
         <form action="" onSubmit={send}>
-          <h2>Chat with lawjun</h2>
+          <div className="header">
+            <h2>Chat with lawjun</h2>
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.removeItem("chats");
+                setChats([]);
+              }}
+            >
+              Start new chat <span>+</span>
+            </button>
+          </div>
           <div className="inp-holder">
             <input
               type="text"

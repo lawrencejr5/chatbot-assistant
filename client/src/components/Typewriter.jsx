@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-const Typewriter = ({ text, speed = 100 }) => {
+const Typewriter = ({ text, speed = 100, shouldAnimate = true }) => {
   const [displayedText, setDisplayedText] = useState("");
 
+  const formatText = (text) => {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\n/g, "<br />");
+  };
+
   useEffect(() => {
+    if (!shouldAnimate) {
+      setDisplayedText(text);
+      return;
+    }
+
     let index = 0;
     setDisplayedText("");
     const interval = setInterval(() => {
@@ -17,7 +28,7 @@ const Typewriter = ({ text, speed = 100 }) => {
     return () => clearInterval(interval);
   }, [text, speed]);
 
-  return displayedText;
+  return <div dangerouslySetInnerHTML={{ __html: formatText(text) }} />;
 };
 
 export default Typewriter;
