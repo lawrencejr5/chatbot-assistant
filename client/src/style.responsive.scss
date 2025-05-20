@@ -1,0 +1,54 @@
+$primary-color: #1c1c1c;
+
+@media screen and (max-width: 700px) {
+    main {
+        padding-top: 1rem;
+        h1 {
+            font-size: 30px;
+        }
+        .chat-section {
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        .form-section {
+            padding: 0 1rem;
+            form {
+                width: 100%;
+                margin: 0 1rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    main {
+        .chat-section {
+            .chat {
+                font-size: 16px;
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+                padding-right: 1rem;
+            }
+        }
+
+        .form-section {
+            form {
+                .header {
+                    h2 {
+                        font-size: 18px;
+                    }
+                    button {
+                        font-size: 12px;
+                        padding: 0 0.5rem;
+                        height: 30px;
+                        border: 1px solid #fff;
+                        span {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
