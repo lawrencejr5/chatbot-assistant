@@ -38,7 +38,7 @@ const App = () => {
       });
       setLoading(true);
 
-      const { data } = await axios.post("http://localhost:5000/api/v1", {
+      const { data } = await axios.post("https:lawjun-assistant-api/api/v1", {
         chatHistory: [...chats, newMessage],
       });
 
