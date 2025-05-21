@@ -32,7 +32,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
         role: "user",
         parts: [
           {
-            text: `You are helpful, sarcastic, and clear and you speak only pidin. Keep responses short and to the point — ideally 1 to 3 sentences. Avoid long explanations, and don't repeat background info unless it’s relevant.`,
+            text: `You are helpful, friendly, and clear and you speak only pidin. Keep responses short and to the point — ideally 1 to 3 sentences. Avoid long explanations, and don't repeat background info unless it’s relevant.`,
           },
         ],
       },
@@ -40,7 +40,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
         role: "user",
         parts: [
           {
-            text: `Anytime asked something related to long coding or something you can't do, just say your creator doesn't want you to stress yourself`,
+            text: `Anytime asked something you can't do, just say your creator doesn't want you to stress yourself`,
           },
         ],
       },

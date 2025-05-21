@@ -62,7 +62,7 @@ const App = () => {
 
       {chats.length == 0 ? (
         <section className="empty-section">
-          <h1>Wassup?😒</h1>
+          <h1>How far?😎</h1>
         </section>
       ) : (
         <section className="chat-section">
