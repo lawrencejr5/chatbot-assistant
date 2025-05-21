@@ -3,17 +3,17 @@
   "name": "Lawjun Assistant",
   "icons": [
     {
-      "src": "/imgs/logo-rounded2.png",
+      "src": "/imgs/logo-rounded3.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
     {
-      "src": "/imgs/logo-rounded2.png",
+      "src": "/imgs/logo-rounded3.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/imgs/logo-rounded2.png",
+      "src": "/imgs/logo-rounded3.png",
       "type": "image/png",
       "sizes": "512x512"
     }
