@@ -26,6 +26,8 @@ const App = () => {
     }, 100); // adjust delay as needed
   }, [chats]);
 
+  const apiUrl = "https://lawjun-assistant-api.vercel.app/api/v1";
+  // const apiUrl = "http://localhost:5000/api/v1";
   const send = async (e) => {
     e.preventDefault();
     try {
@@ -38,12 +40,9 @@ const App = () => {
       });
       setLoading(true);
 
-      const { data } = await axios.post(
-        "https://lawjun-assistant-api.vercel.app/api/v1",
-        {
-          chatHistory: [...chats, newMessage],
-        }
-      );
+      const { data } = await axios.post(apiUrl, {
+        chatHistory: [...chats, newMessage],
+      });
 
       const modelReply = { role: "model", parts: [{ text: data.response }] };
       setChats((prev) => {

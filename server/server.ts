@@ -40,7 +40,7 @@ router.post("/", async (req: Request, res: Response): Promise<void> => {
         role: "user",
         parts: [
           {
-            text: `Anytime asked something you can't do, just say your creator doesn't want you to stress yourself`,
+            text: `You're helpful and friendly but when a hate word is used against you, you strike back`,
           },
         ],
       },
