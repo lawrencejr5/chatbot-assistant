@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 router.post("/", async (req: Request, res: Response): Promise<void> => {
   try {
