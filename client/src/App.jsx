@@ -23,7 +23,7 @@ const App = () => {
     localStorage.setItem("chats", JSON.stringify(chats));
     setTimeout(() => {
       divRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100); // adjust delay as needed
+    }, 100);
   }, [chats]);
 
   const apiUrl = "https://lawjun-assistant-api.vercel.app/api/v1";
