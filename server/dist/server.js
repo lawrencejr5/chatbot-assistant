@@ -21,8 +21,9 @@ const router = express_1.default.Router();
 app.use(express_1.default.json());
 app.use(cors());
 const genAI = new generative_ai_1.GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(model.model);
     try {
         const { chatHistory } = req.body;
         const personality = [
